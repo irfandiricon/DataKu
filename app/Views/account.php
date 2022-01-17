@@ -17,7 +17,7 @@ $paramprofile = base64_encode(json_encode($Profile));
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<img src="<?php echo base_url('assets/image/profile/users.png'); ?>" class="img img-fluid img-rounded" style="height: 130px; width: auto;">
-						<div class="box-picture">
+						<div class="box-picture" onclick="modal('modal-lg', 'Photo Profil', 'modal/modal_form_photo_profile', '<?php echo $paramprofile ?>', 'account/update_photo_profile', '<?php echo base_url() ?>')">
 							<i class="fa fa-camera" style="font-size: 24px;"></i>
 						</div>
 					</div>
