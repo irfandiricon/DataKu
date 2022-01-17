@@ -1,0 +1,63 @@
+div.owl-breaking-news div.owl-nav{
+    display: none;
+}
+
+div.owl-breaking-news div.owl-dots{
+    padding-top: 15px;
+}
+
+div.owl-news div.owl-dots{
+    padding-top: 20px;
+}
+
+div.owl-news div.owl-nav{
+    display: none;
+}
+
+div.owl-video div.owl-dots{
+    padding-top: 20px;
+}
+
+div.owl-video div.owl-nav{
+    display: none;
+}
+
+div.owl-news div.owl-nav button.owl-prev:hover{
+	background: transparent;
+	color: red;
+}
+
+div.owl-news div.owl-nav button.owl-next:hover{
+	background: transparent;
+	color: red;
+}
+
+div.socialize a{
+	padding-right: 0px !important;
+}
+
+.see-more-news{
+	background: #1461ae;
+	float: right;
+	border: transparent;
+	cursor: pointer;
+}
+
+.see-more-news:hover{
+	color: red;
+}
+
+ul.my-apps li.list-group-item{
+	cursor: pointer;
+}
+
+ul.my-apps li.list-group-item:hover{
+	background: #122f4d;
+	color: white;
+	border-radius: 0px;
+}
+
+.label-data{
+	font-size: 60px;
+	font-weight: bold;
+}

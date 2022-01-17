@@ -1,0 +1,32 @@
+/* latin-ext */
+@font-face {
+	font-family: 'JosefinSans-Regular';
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	src: local('JosefinSans-Regular'), local('JosefinSans-Regular'), url('JosefinSans-Regular.ttf') format('woff2');
+}
+/* Bold */
+@font-face {
+	font-family: 'JosefinSans-Bold';
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	src: local('JosefinSans-Bold'), local('JosefinSans-Bold'), url('JosefinSans-Bold.ttf') format('woff2');
+}
+/* Bold Italic */
+@font-face {
+	font-family: 'JosefinSans-BoldItalic';
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	src: local('JosefinSans-BoldItalic'), local('JosefinSans-BoldItalic'), url('JosefinSans-BoldItalic.ttf') format('woff2');
+}
+/* Italic */
+@font-face {
+	font-family: 'JosefinSans-Italic';
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	src: local('JosefinSans-Italic'), local('JosefinSans-Italic'), url('JosefinSans-Italic.ttf') format('woff2');
+}

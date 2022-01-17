@@ -1,0 +1,71 @@
+table.table-daily{
+	height: 170px;
+	width: 170px;
+	border-radius: 75px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.table-daily thead tr td{
+	text-align: center;
+	color: white;
+	font-size: 70px;
+}
+
+.price-daily{
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: #303540;
+}
+
+table.table-month{
+	height: 170px;
+	width: 170px;
+	border-radius: 75px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.table-month thead tr td{
+	text-align: center;
+	color: white;
+	font-size: 70px;
+}
+
+.price-month{
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: #303540;
+}
+
+table.table-years{
+	height: 170px;
+	width: 170px;
+	border-radius: 75px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.table-years thead tr td{
+	text-align: center;
+	color: white;
+	font-size: 70px;
+}
+
+.price-years{
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: #303540;
+}

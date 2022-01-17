@@ -1,0 +1,172 @@
+body{
+	overflow-x: hidden;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: grey;
+    opacity: 0.9;
+}
+.preloader .loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.row-title{
+	background: #1461ae;
+	color: white;
+	padding: 10px;
+}
+
+.col-12, .col-sm-12{
+	/*padding-top: 10px;*/
+}
+
+.bg-blue{
+	background-color: #17a2b8 !important;
+} 
+
+ul.navbar-nav li.nav-item a.nav-link{
+	padding: 10px;
+	color: white;
+}
+
+ul.navbar-nav li.nav-item a.nav-link:hover{
+	color: white;
+	background: #122f4d;
+	border-radius: 10px;
+}
+
+.footer{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: #17a2b8 !important;
+	color: white;
+	bottom: 0;
+}
+
+.footer-menu{
+	margin-right: 20px;
+}
+
+.footer-menu a{
+	color: white;
+	text-decoration: none;
+}
+
+input, select, button{
+	font-size: 20px !important;
+	border-radius: 0 !important;
+	height: 50px !important;
+}
+
+.row{
+	margin-left: 0;
+	margin-right: 0;
+	width: 100%;
+}
+
+.card-body{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.padleft-0{
+	padding-left: 0;
+}
+
+.padleft-10{
+	padding-left: 10px;
+}
+
+.padleft-10{
+	padding-left: 20px;
+}
+
+.padright-0{
+	padding-right: 0;
+}
+
+.padright-10{
+	padding-right: 10px;
+}
+
+.padright-20{
+	padding-right: 20px;
+}
+
+.padtop-0{
+	padding-top: 0;
+}
+
+.padtop-10{
+	padding-top: 10px;
+}
+
+.padtop-20{
+	padding-top: 20px;
+}
+
+.padbottom-0{
+	padding-bottom: 0;
+}
+
+.padbottom-10{
+	padding-bottom: 10px;
+}
+
+.padbottom-20{
+	padding-bottom: 20px;
+}
+
+.t-bold{
+	font-weight: bold;
+}
+
+.t-right{
+	text-align: right;
+}
+
+.t-center{
+	text-align: center;
+}
+
+.f-size-12{
+	font-size: 12px;
+}
+
+.f-size-14{
+	font-size: 14px;
+}
+
+.f-size-16{
+	font-size: 16px;
+}
+
+.f-size-18{
+	font-size: 18px;
+}
+
+.f-size-20{
+	font-size: 20px;
+}
+
+.f-size-22{
+	font-size: 22px;
+}
+
+.d-table{
+	display: table;
+}
+
+.d-table-cell-middle{
+	display: table-cell;
+	vertical-align: middle;
+}
