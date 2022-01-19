@@ -23,7 +23,7 @@ $UrlActive = "";
         }
         $Redirect = base_url().'/'.$URL;
     ?>
-        <li class="nav-item <?php echo $actived ?> btn-menu" onclick="window.location.href='<?php echo $Redirect ?>'">
+        <li class="nav-item <?php echo $actived ?> btn-menu open-preloader" onclick="window.location.href='<?php echo $Redirect ?>'">
             <a class="nav-link" id="<?php echo $NAME ?>-tab" data-toggle="tab" href="<?php echo $URL ?>" role="tab" aria-selected="true">
                 <?php echo $NAME ?>
             </a>
@@ -45,8 +45,13 @@ $UrlActive = "";
             $URL = isset($row->URL) ? $row->URL:"";
             $LABEL = isset($row->LABEL) ? $row->LABEL:"";
             $Redirect = base_url().'/'.$URL;
+            if($NAME == $UrlActive){
+                $Active = "active";
+            }else{
+                $Active = "";
+            }
         ?>
-            <a class="dropdown-item" href="<?php echo $Redirect ?>"><?php echo $NAME ?></a>
+            <a class="dropdown-item open-preloader <?php echo $Active ?>" href="<?php echo $Redirect ?>"><?php echo $NAME ?></a>
         <?php
         }
         ?>

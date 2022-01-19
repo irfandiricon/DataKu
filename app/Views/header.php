@@ -11,29 +11,46 @@
 	<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 		<ul class="navbar-nav ml-md-auto ">
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo base_url()?>">Beranda</a>
+				<a class="nav-link open-preloader" href="<?php echo base_url()?>">
+					<i class="fa fa-home"></i> Beranda
+				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo base_url('hubungi-kami')?>">Hubungi Kami</a>
+				<a class="nav-link open-preloader" href="<?php echo base_url('hubungi-kami')?>">
+					<i class="fa fa-phone-square"></i> Hubungi Kami
+				</a>
 			</li>
 			<?php 
 			if(empty(sizeof($SESSION_LOGIN))){
 			?>
 				<li class="nav-item">
-					<a class="nav-link" href="<?php echo base_url('pendaftaran')?>">Pendaftaran</a>
+					<a class="nav-link open-preloader" href="<?php echo base_url('pendaftaran')?>">
+						<i class="fa fa-user"></i> Pendaftaran
+					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="<?php echo base_url('masuk')?>">Masuk</a>
+					<a class="nav-link open-preloader" href="<?php echo base_url('masuk')?>">
+						<i class="fa fa-sign-in-alt"></i> Masuk
+					</a>
 				</li>
 			<?php } else { ?>
 				<li class="nav-item">
-					<a class="nav-link" href="<?php echo base_url('riwayat-transaksi')?>">Riwayat Transaksi</a>
+					<a class="nav-link open-preloader" href="<?php echo base_url('riwayat-transaksi')?>">
+						<i class="fa fa-history"></i> Riwayat Transaksi
+					</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?php echo base_url('akun')?>">Akun</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?php echo base_url('keluar')?>">Keluar</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-cog"></i> Pengaturan
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item open-preloader" href="<?php echo base_url('akun')?>">
+							<i class="fa fa-user"></i> Akun
+						</a>
+						<a class="dropdown-item open-preloader" href="<?php echo base_url('keluar')?>">
+							<i class="fa fa-sign-out-alt"></i> Keluar
+						</a>
+					</div>
 				</li>
 			<?php } ?>
 		</ul>

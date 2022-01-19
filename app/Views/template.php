@@ -119,6 +119,14 @@ if($PROTOCOL == "https://"){
 	</div>
 
 	<div class="modal" id="modal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-hidden="true"></div>
+
+	<script type="text/javascript">
+		$(function(){
+			$('.open-preloader').click(function(){
+				$('.preloader').fadeIn();
+			});
+		});
+	</script>
 </body>
 </html>
 

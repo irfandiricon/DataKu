@@ -48,12 +48,22 @@ input[type=number] {
 ul.navbar-nav li.nav-item a.nav-link{
 	padding: 10px;
 	color: white;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+ul.navbar-nav li.nav-item a.nav-link i{
+	padding-right: 3px;
 }
 
 ul.navbar-nav li.nav-item a.nav-link:hover{
 	color: white;
 	background: #122f4d;
 	border-radius: 10px;
+}
+
+div.dropdown-menu a.dropdown-item i{
+	padding-right: 3px;
 }
 
 .footer{

@@ -63,6 +63,8 @@ $routes->get('/shopeepay', 'Emoney::shopeepay');
 
 $routes->get('/mobile-legends', 'Games::mobile_legends');
 $routes->get('/pubg', 'Games::pubg');
+$routes->get('/call-of-duty', 'Games::cod');
+$routes->get('/arena-of-valor', 'Games::aov');
 
 $routes->add('/pricelist/getprice', 'Pricelist::getprice');
 $routes->add('/pricelist/getprice/(:any)', 'Pricelist::getprice/$1');

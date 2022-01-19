@@ -254,7 +254,7 @@ class Emoney extends BaseController
 
         foreach($RetrieveBalance as $row){
         	$pulsa_code = isset($row->pulsa_code) ? $row->pulsa_code:"";
-        	if($pulsa_code == $CODE){
+        	if(str_replace(" ", "", $pulsa_code) == $CODE){
         		$GetData = $row;
         	}
         }

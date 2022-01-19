@@ -8,7 +8,7 @@ $Produk = isset($Data['Produk']) ? $Data['Produk']:array();
     <div class="card-body">
 		<div class="row" >
 		    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="text-align: center;">
-		    	<?php echo view('prabayar/tab', $param)?>
+		    	<?php echo view('tab', $param)?>
 		    </div>
 		</div>
 		<form action="javascript:void(0)" method="post" id="formData" data-proses="<?php echo base_url() ?>">

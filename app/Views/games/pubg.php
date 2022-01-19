@@ -7,7 +7,7 @@ $param['Url'] = $Data['Url'];
     <div class="card-body">
 		<div class="row" >
 		    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="text-align: center;">
-		    	<?php echo view('emoney/tab', $param)?>
+		    	<?php echo view('tab', $param)?>
 		    </div>
 		</div>
 		<form action="javascript:void(0)" method="post" id="formData" data-proses="<?php echo base_url() ?>">
@@ -17,7 +17,7 @@ $param['Url'] = $Data['Url'];
 				        <h5>USER ID</h5>
 				    </div>
 				    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-				        <input type="text" name="userid" id="userid" placeholder="Masukan User ID" class="form-control" onkeypress="return hanyaAngka(event)" maxlength="8">
+				        <input type="text" name="userid" id="userid" placeholder="Masukan User ID" class="form-control" onkeypress="return hanyaAngka(event)">
 				    </div>
 				</div>
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 padtop-10 padleft-0 padright-0" style="display: table;">

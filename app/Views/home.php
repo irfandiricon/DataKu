@@ -30,7 +30,7 @@ foreach($Kategori as $data)
 			}
 		?>
 			<div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6" style="padding: 10px;">
-				<button class="btn btn-menu <?php echo $classbtn ?>" data="<?php echo $URL ?>">
+				<button class="btn btn-menu <?php echo $classbtn ?> open-preloader" data="<?php echo $URL ?>">
 					<?php 
 					if($TITLE_LABEL == "ICON"){
 					?>

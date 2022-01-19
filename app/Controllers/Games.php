@@ -77,6 +77,68 @@ class Games extends BaseController
 		return view('template', $param);
 	}
 
+	public function cod()
+	{
+		$CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){
+            return redirect()->to(base_url('masuk'));
+        }
+
+		$param = array();
+		$param['cssName'] = "Css/public.css";
+		$param['jsName'] = "JavaScript/public.js";
+		$param['content'] = "games/cod";
+		$param['SESSION_LOGIN'] = $SESSION_LOGIN;
+
+		$DataKategori = array();
+
+		$RetrieveKategori = json_decode(file_get_contents(base_url('api/kategori')));
+		foreach($RetrieveKategori as $row){
+			$NAME = isset($row->NAME) ? $row->NAME:"";
+			if($NAME == "VOUCHER GAME"){
+				$DataKategori[] = $row;
+			}
+		}
+
+		$param['Data']['kategori'] = $DataKategori;
+		$param['Data']['Url'] = "call-of-duty";
+		return view('template', $param);
+	}
+
+	public function aov()
+	{
+		$CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){
+            return redirect()->to(base_url('masuk'));
+        }
+
+		$param = array();
+		$param['cssName'] = "Css/public.css";
+		$param['jsName'] = "JavaScript/public.js";
+		$param['content'] = "games/aov";
+		$param['SESSION_LOGIN'] = $SESSION_LOGIN;
+
+		$DataKategori = array();
+
+		$RetrieveKategori = json_decode(file_get_contents(base_url('api/kategori')));
+		foreach($RetrieveKategori as $row){
+			$NAME = isset($row->NAME) ? $row->NAME:"";
+			if($NAME == "VOUCHER GAME"){
+				$DataKategori[] = $row;
+			}
+		}
+
+		$param['Data']['kategori'] = $DataKategori;
+		$param['Data']['Url'] = "arena-of-valor";
+		return view('template', $param);
+	}
+
 	public function view_price($TYPE = '')
 	{
 		$GamesModel = New Games_model();
@@ -147,7 +209,7 @@ class Games extends BaseController
             $JSON['ERROR_MESSAGE'] = "PIN anda tidak sesuai!";
             die(json_encode($JSON));
         }
-        
+
 		if(empty($CODE)){
             $ERROR_MESSAGE = "Silahkan pilih produk!";
             $ERROR_CODE = "EC:002A";
@@ -155,8 +217,6 @@ class Games extends BaseController
             die(json_encode($JSON));
         }
 
-        // $UrlProduk = base_url('api/produk')."/".$CODE;
-        // $RetrieveProduk = json_decode(file_get_contents($UrlProduk));
         $RetrieveProduk = $GamesModel->view_produk($CODE);
         $HargaModalProduk = isset($RetrieveProduk->HARGA_MODAL) ? $RetrieveProduk->HARGA_MODAL:0; 
         $HargaJual = isset($RetrieveProduk->HARGA_JUAL) ? $RetrieveProduk->HARGA_JUAL:0; 
@@ -168,7 +228,7 @@ class Games extends BaseController
 
         foreach($RetrieveBalance as $row){
         	$pulsa_code = isset($row->pulsa_code) ? $row->pulsa_code:"";
-        	if($pulsa_code == $CODE){
+        	if(str_replace(" ", "", $pulsa_code) == $CODE){
         		$GetData = $row;
         	}
         }
