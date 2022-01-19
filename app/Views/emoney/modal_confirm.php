@@ -50,6 +50,16 @@ $HARGA_JUAL = isset($rows['HARGA_JUAL']) ? $rows['HARGA_JUAL']:"";
 
 <script type="text/javascript">
 	$(function(){
+		$('button#submit').on('click', function(e){
+			e.preventDefault();
+			modal('modal-md', 'PIN Transaksi', 'emoney/modal_pin', '<?php echo base64_encode(json_encode($rows)) ?>', 'emoney/proses', '<?php echo base_url() ?>');
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(function(){
 		$('button#submit').html('Konfirmasi');
+		$('button#submit').removeAttr('onclick');
 	});
 </script>

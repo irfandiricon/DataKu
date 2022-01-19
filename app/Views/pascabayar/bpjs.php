@@ -10,15 +10,32 @@ $param['Url'] = $Data['Url'];
 		    	<?php echo view('emoney/tab', $param)?>
 		    </div>
 		</div>
-		<form action="javascript:void(0)" method="post" data-url="<?php echo base_url('pascabayar/proses/pln') ?>" id="formData" data-proses="<?php echo base_url() ?>">
+		<form action="javascript:void(0)" method="post" id="formData" data-proses="<?php echo base_url() ?>">
 			<div class="row" style="padding-top: 30px;">
-			    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-			        <h5>Nomor Pelanggan</h5>
+			    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 padtop-10">
+			    	<h5>Bulan</h5>
+			    	<select name="month" class="form-control">
+			    		<?php 
+			    		$bulan = array("1"=>"Januari", "2"=>"Februari", "3"=>"Maret", "4"=>"April", "5"=>"Mei", "6"=>"Juni", "7"=>"Juli", "8"=>"Agustus", "9"=>"September", "10"=>"Oktober", "11"=>"November", "12"=>"Desember");
+			    		$dateNow = date('m');
+			    		for($i=1; $i<=12; $i++){
+			    			if(sprintf("%02d", $i) == $dateNow){
+			    				$selected = "selected";
+			    			}else{
+			    				$selected = "";
+			    			}
+			    		?>
+		    				<option value="<?php echo $i ?>" <?php echo $selected ?>><?php echo $bulan[$i] ?></option>
+			    		<?php
+			    		}
+			    		?>
+			    	</select>
 			    </div>
-			    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 padtop-10">
+			    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 padtop-10">
+			    	<h5>Nomor Pelanggan</h5>
 			    	<input type="number" name="id_pelanggan" id="id_pelanggan" placeholder="Masukan Nomor Pelanggan" class="form-control" onkeypress="return hanyaAngka(event)">
 			    </div>
-			    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 padtop-10 padleft-0 padright-0" style="display: table;">
+			    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 padtop-10 padleft-0 padright-0" style="display: table;">
 					<div style="display: table-cell; vertical-align: bottom; padding-left: 15px; padding-right: 15px;">
 						<button class="btn btn-info btn-block" type="button" onclick="viewprice()">
 							Cek Tagihan
@@ -69,7 +86,7 @@ $param['Url'] = $Data['Url'];
 		var url = form.data('proses');
 		var data = form.serialize();
 		$.ajax({
-			url : url+'/pascabayar/view_price/pln',
+			url : url+'/pascabayar/view_price/bpjs',
 			data : data,
 			cache : false,
 			type : 'post',

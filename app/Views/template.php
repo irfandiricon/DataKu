@@ -24,6 +24,9 @@ $PROTOCOL = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERV
     <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/OwlCarousel2/dist/assets/owl.theme.green.min.css">
     <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/Josefin_Sans/static/style.css">
     <link rel="stylesheet" href="<?php echo base_url('assets') ?>/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets') ?>/bootstrap-fileinput/css/fileinput-rtl.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets') ?>/bootstrap-fileinput/css/fileinput.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets') ?>/bootstrap-fileinput/css/fileinput.min.css">
     <?php
     if(!empty($cssName)){ 
 	    $AddtionalCss = explode(":",$cssName);
@@ -42,6 +45,8 @@ $PROTOCOL = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERV
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/OwlCarousel2/dist/owl.carousel.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/sweetalert.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets'); ?>/bootstrap-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets'); ?>/bootstrap-fileinput/js/fileinput.min.js"></script>
     <?php
     if(!empty($jsName)){
 	    $AddtionalJs = explode(":",$jsName);

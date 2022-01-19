@@ -10,7 +10,7 @@ $param['Url'] = $Data['Url'];
 		    	<?php echo view('emoney/tab', $param)?>
 		    </div>
 		</div>
-		<form action="javascript:void(0)" method="post" data-url="<?php echo base_url('emoney/proses') ?>" id="formData" data-proses="<?php echo base_url() ?>">
+		<form action="javascript:void(0)" method="post" id="formData" data-proses="<?php echo base_url() ?>">
 			<div class="row" style="padding-top: 30px;">
 			    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 			        <h5>Nomor Tujuan</h5>

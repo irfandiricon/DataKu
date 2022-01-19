@@ -4,7 +4,7 @@ function modal(modal, title, file, row, action){
     var pathname = window.location.pathname;
     var split = pathname.split("/");
     var directory = split[1];
-    var base_url = protocol+'//'+hostname+'/'+directory+"/admin/";
+    var base_url = protocol+'//'+hostname+':8080/'+directory+"/admin/";
 
     var rows = JSON.parse(atob(row));
     var data = {

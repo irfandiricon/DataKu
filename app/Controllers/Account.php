@@ -1,7 +1,7 @@
 <?php namespace App\Controllers;
 use App\Models\Auth_model;
 use Config\Custom;
-use App\Libraries\Service;
+use CodeIgniter\Files\File;
 
 class Account extends BaseController
 {
@@ -45,7 +45,10 @@ class Account extends BaseController
 
         $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
         if(empty($SESSION_LOGIN)){
-            return redirect()->to(base_url());
+            $ERROR_CODE = "EC:0000";
+            $ERROR_MESSAGE = "Silahkan login kembali!";
+            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YES");
+            die(json_encode($JSON));
         }
 
         $VALID_EMAIL = "/^([\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4})?$/";
@@ -141,7 +144,10 @@ class Account extends BaseController
 
         $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
         if(empty($SESSION_LOGIN)){
-            return redirect()->to(base_url());
+            $ERROR_CODE = "EC:0000";
+            $ERROR_MESSAGE = "Silahkan login kembali!";
+            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YES");
+            die(json_encode($JSON));
         }
         
         $VALID_EMAIL = "/^([\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4})?$/";
@@ -221,7 +227,10 @@ class Account extends BaseController
 
         $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
         if(empty($SESSION_LOGIN)){
-            return redirect()->to(base_url());
+            $ERROR_CODE = "EC:0000";
+            $ERROR_MESSAGE = "Silahkan login kembali!";
+            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YES");
+            die(json_encode($JSON));
         }
         
         $VALID_NUMBER = "/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/";
@@ -270,7 +279,6 @@ class Account extends BaseController
         }
 
         $REFERRAL_SESSION = isset($CheckUser->REFERRAL_ID) ? $CheckUser->REFERRAL_ID:"";
-
         $PIN = md5($REFERRAL_SESSION.$PIN);
 
         $paraminsert['PIN'] = $PIN;
@@ -299,7 +307,10 @@ class Account extends BaseController
 
         $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
         if(empty($SESSION_LOGIN)){
-            return redirect()->to(base_url());
+            $ERROR_CODE = "EC:0000";
+            $ERROR_MESSAGE = "Silahkan login kembali!";
+            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YES");
+            die(json_encode($JSON));
         }
         
         $VALID_NUMBER = "/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/";
@@ -381,7 +392,74 @@ class Account extends BaseController
 
         $ERROR_MESSAGE = "Berhasil menonaktifkan pengguna ";
         $ERROR_CODE = "EC:0000";
-        $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YED");
+        $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YES");
         die(json_encode($JSON));
+    }
+
+    public function update_photo_profile()
+    {
+        $CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+        $AuthModel = new Auth_model();
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){   
+            $ERROR_CODE = "EC:0000";
+            $ERROR_MESSAGE = "Silahkan login kembali!";
+            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YES");
+            die(json_encode($JSON));
+        }
+        $ID = isset($SESSION_LOGIN['ID']) ? $SESSION_LOGIN['ID']:"";
+
+        $validationRule = [
+            'userfile' => [
+                'label' => 'Image File',
+                'rules' => 'uploaded[userfile]'
+                    . '|is_image[userfile]'
+                    . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+                    . '|max_size[userfile,100]'
+                    . '|max_dims[userfile,1024,768]',
+            ],
+        ];
+        if (!$this->validate($validationRule)) {
+            $JSON['ERROR_CODE'] = "EC:001A";
+            $JSON['ERROR_MESSAGE'] = json_encode($this->validator->getErrors());
+            die(json_encode($JSON));
+        }
+
+        $file = $this->request->getFile('userfile');
+        $filename = $_FILES['userfile']['name'];
+        $Exp = explode(".", $filename);
+        $Ext = $Exp[sizeof($Exp)-1];
+        $FileName = "USER_ID_".$ID.".".$Ext;
+        $PathFile =  "assets/image/profile/";
+        $PathName = $PathFile.$FileName;
+
+        if(file_exists(ROOTPATH.'/'.$PathFile.$FileName))
+        {
+            unlink(ROOTPATH.'/'.$PathFile.$FileName);
+        }
+
+        if ($file->isValid() && !$file->hasMoved()){
+            $file->move(ROOTPATH.'/'.$PathFile,$FileName);
+
+            $paramupdate['FILE_PROFILE'] = $PathName;
+            $Retrieve =  $AuthModel->update($ID, $paramupdate);
+            if(!$Retrieve){
+                $ERROR_MESSAGE = "Gagal memperbaharui data photo!";
+                $ERROR_CODE = "EC:002A";
+                $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE);
+                die(json_encode($JSON));
+            }
+
+            $ERROR_CODE = "EC:0000";
+            $ERROR_MESSAGE = "Sukses upload file";
+            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE);
+            die(json_encode($JSON));
+        }else{
+            $ERROR_CODE = "EC:0000";
+            $ERROR_MESSAGE = "Gagal upload file!";
+            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE);
+        }
     }
 }

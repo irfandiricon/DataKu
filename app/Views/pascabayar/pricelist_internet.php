@@ -15,6 +15,11 @@ $Total = isset($Inquiry->price) ? $Inquiry->price:0;
 
 $Desc = isset($Inquiry->desc) ? $Inquiry->desc: array();
 $ProductDesc = isset($Desc->product_desc) ? $Desc->product_desc:"";
+
+$parampin['TrId'] = $TrId;
+$parampin['IdPelanggan'] = $ID;
+$SendPin = base64_encode(json_encode($parampin));
+
 if($Rc <> '00'){
 ?>
 	<div class="row" style="padding-top: 10px; width: 100%">
@@ -106,7 +111,7 @@ if($Rc == '00'){
 					</div>
 					<div class="row t-center padtop-20">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 t-bold">
-							<button class="btn btn-info" type="button" onclick="submitform()">
+							<button class="btn btn-info" type="button" onclick="submitpin()">
 								Bayar
 							</button>
 						</div>
@@ -116,6 +121,13 @@ if($Rc == '00'){
 		</div>
 	</div>
 <?php } ?>
+
+<script type="text/javascript">
+	function submitpin()
+	{
+		modal('modal-md', 'PIN Transaksi', 'pascabayar/modal_pin', '<?php echo $SendPin ?>', 'pascabayar/proses/internet', '<?php echo base_url() ?>');
+	}	
+</script>
 
 <style type="text/css">
 	.card-body.active{

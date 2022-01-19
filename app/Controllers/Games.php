@@ -1,4 +1,5 @@
 <?php namespace App\Controllers;
+use App\Models\Auth_model;
 use App\Models\Transaksi_model;
 use App\Models\Logtransaksi_model;
 use App\Models\Games_model;
@@ -112,14 +113,41 @@ class Games extends BaseController
         $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
         $CREATED_BY = isset($SESSION_LOGIN['EMAIL']) ? $SESSION_LOGIN['EMAIL']:"SYSTEM";
 
+        $ID = isset($SESSION_LOGIN['ID']) ? $SESSION_LOGIN['ID']:"";
+        $EMAIL = isset($SESSION_LOGIN['EMAIL']) ? $SESSION_LOGIN['EMAIL']:"";
+
 		$Service = new Service();
 		$GamesModel = New Games_model();
 		$TransaksiModel = New Transaksi_model();
 		$LogTransaksiModel = New Logtransaksi_model();
+		$AuthModel = New Auth_model();
 
 		$NUMBER = isset($_POST['number']) ? $_POST['number']:"";
 		$CODE = isset($_POST['code']) ? $_POST['code']:"";
 
+		$PIN1 = isset($_POST['pin1']) ? $_POST['pin1']:"";
+		$PIN2 = isset($_POST['pin2']) ? $_POST['pin2']:"";
+		$PIN3 = isset($_POST['pin3']) ? $_POST['pin3']:"";
+		$PIN4 = isset($_POST['pin4']) ? $_POST['pin4']:"";
+
+		$CheckUser = $AuthModel->CheckRow("CUSTOMER", "ID", $ID);
+        if(empty($CheckUser)){
+            $JSON['ERROR_CODE'] = "EC:000A";
+            $JSON['ERROR_MESSAGE'] = "Email anda tidak terdaftar, silahkan registrasi terlebih dahulu!";
+            die(json_encode($JSON));
+        }
+
+        $PIN_MERGER = $PIN1.$PIN2.$PIN3.$PIN4;
+        $PIN_SESSION = isset($CheckUser->PIN) ? $CheckUser->PIN:"";
+        $REFERRAL_SESSION = isset($CheckUser->REFERRAL_ID) ? $CheckUser->REFERRAL_ID:"";
+        $PIN = md5($REFERRAL_SESSION.$PIN_MERGER);
+
+        if($PIN != $PIN_SESSION){
+        	$JSON['ERROR_CODE'] = "EC:000B";
+            $JSON['ERROR_MESSAGE'] = "PIN anda tidak sesuai!";
+            die(json_encode($JSON));
+        }
+        
 		if(empty($CODE)){
             $ERROR_MESSAGE = "Silahkan pilih produk!";
             $ERROR_CODE = "EC:002A";

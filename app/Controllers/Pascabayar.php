@@ -1,4 +1,5 @@
 <?php namespace App\Controllers;
+use App\Models\Auth_model;
 use App\Models\Transaksi_model;
 use App\Models\Logtransaksi_model;
 use App\Models\Pascabayar_model;
@@ -97,7 +98,7 @@ class Pascabayar extends BaseController
 		$param = array();
 		$param['cssName'] = "Css/public.css";
 		$param['jsName'] = "JavaScript/public.js";
-		$param['content'] = "prabayar/pdam";
+		$param['content'] = "pascabayar/pdam";
 		$param['SESSION_LOGIN'] = $SESSION_LOGIN;
 
 		$PascabayarModel = new Pascabayar_model();
@@ -466,12 +467,39 @@ class Pascabayar extends BaseController
         $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
         $CREATED_BY = isset($SESSION_LOGIN['EMAIL']) ? $SESSION_LOGIN['EMAIL']:"SYSTEM";
 
+        $ID = isset($SESSION_LOGIN['ID']) ? $SESSION_LOGIN['ID']:"";
+        $EMAIL = isset($SESSION_LOGIN['EMAIL']) ? $SESSION_LOGIN['EMAIL']:"";
+
 		$db = \Config\Database::connect();
 		$TransaksiModel = New Transaksi_model();
 		$LogTransaksiModel = New Logtransaksi_model();
+		$AuthModel = New Auth_model();
 
 		$IdPelanggan = isset($_POST['id_pelanggan']) ? $_POST['id_pelanggan']:"";
 		$TrId = isset($_POST['tr_id']) ? $_POST['tr_id']:"";
+
+		$PIN1 = isset($_POST['pin1']) ? $_POST['pin1']:"";
+		$PIN2 = isset($_POST['pin2']) ? $_POST['pin2']:"";
+		$PIN3 = isset($_POST['pin3']) ? $_POST['pin3']:"";
+		$PIN4 = isset($_POST['pin4']) ? $_POST['pin4']:"";
+
+		$CheckUser = $AuthModel->CheckRow("CUSTOMER", "ID", $ID);
+        if(empty($CheckUser)){
+            $JSON['ERROR_CODE'] = "EC:000A";
+            $JSON['ERROR_MESSAGE'] = "Email anda tidak terdaftar, silahkan registrasi terlebih dahulu!";
+            die(json_encode($JSON));
+        }
+
+        $PIN_MERGER = $PIN1.$PIN2.$PIN3.$PIN4;
+        $PIN_SESSION = isset($CheckUser->PIN) ? $CheckUser->PIN:"";
+        $REFERRAL_SESSION = isset($CheckUser->REFERRAL_ID) ? $CheckUser->REFERRAL_ID:"";
+        $PIN = md5($REFERRAL_SESSION.$PIN_MERGER);
+
+        if($PIN != $PIN_SESSION){
+        	$JSON['ERROR_CODE'] = "EC:000B";
+            $JSON['ERROR_MESSAGE'] = "PIN anda tidak sesuai!";
+            die(json_encode($JSON));
+        }
 
 		if(in_array($type, array("pln","bpjs","pdam","multifinance","telepon","esamsat","tvkabel","pbb","internet","gas"))){
 			$UrlRequest = base_url('api/paymentpostpaid')."/".$TrId;

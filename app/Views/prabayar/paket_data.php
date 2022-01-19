@@ -10,7 +10,7 @@ $param['Url'] = $Data['Url'];
 		    	<?php echo view('prabayar/tab', $param)?>
 		    </div>
 		</div>
-		<form action="javascript:void(0)" method="post" data-url="<?php echo base_url('prabayar/proses_request') ?>" id="formData" data-proses="<?php echo base_url() ?>">
+		<form action="javascript:void(0)" method="post" id="formData" data-proses="<?php echo base_url() ?>">
 			<input type="hidden" name="type" readonly value="DATA">
 			<div class="row" style="padding-top: 30px;">
 			    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

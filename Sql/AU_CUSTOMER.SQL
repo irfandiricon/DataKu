@@ -1,0 +1,19 @@
+DELIMITER $$
+
+USE `ircm7344_dataku`$$
+
+DROP TRIGGER /*!50032 IF EXISTS */ `AU_CUSTOMER`$$
+
+CREATE
+    /*!50017 DEFINER = 'root'@'localhost' */
+    TRIGGER `AU_CUSTOMER` AFTER UPDATE ON `customer` 
+    FOR EACH ROW BEGIN
+	SET @vOldEmail = OLD.EMAIL;
+	SET @vNewEmail = NEW.EMAIL;
+	IF @vOldEmail != @vNewEmail THEN
+		UPDATE TRANSAKSI SET CREATED_BY = @vNewEmail WHERE ID IN (SELECT ID FROM TRANSAKSI WHERE CREATED_BY = @vOldEmail);
+	END IF;
+    END;
+$$
+
+DELIMITER ;

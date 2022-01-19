@@ -20,6 +20,10 @@ $NilaiTagihan = isset($Inquiry->nominal) ? $Inquiry->nominal:0;
 $Admin = isset($Inquiry->admin) ? $Inquiry->admin:0;
 $Total = isset($Inquiry->price) ? $Inquiry->price:0;
 
+$parampin['TrId'] = $TrId;
+$parampin['IdPelanggan'] = $ID;
+$SendPin = base64_encode(json_encode($parampin));
+
 $Exp = explode(",", $Period);
 if($Rc <> '00'){
 ?>
@@ -196,7 +200,7 @@ if($Rc == '00'){
 							</div>
 							<div class="row t-center padtop-20">
 								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 t-bold">
-									<button class="btn btn-info" type="button" onclick="submitform()">
+									<button class="btn btn-info" type="button" onclick="submitpin()">
 										Bayar
 									</button>
 								</div>
@@ -208,6 +212,13 @@ if($Rc == '00'){
 		</div>
 	</div>
 <?php } ?>
+
+<script type="text/javascript">
+	function submitpin()
+	{
+		modal('modal-md', 'PIN Transaksi', 'pascabayar/modal_pin', '<?php echo $SendPin ?>', 'pascabayar/proses/pdam', '<?php echo base_url() ?>');
+	}	
+</script>
 
 <style type="text/css">
 	.card-body.active{

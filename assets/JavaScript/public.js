@@ -31,7 +31,7 @@ $(function(){
                     var UrlPage = res.UrlPage;
                     window.location.href = UrlPage;
                 }
-            },
+            },  
             cache: false,
             contentType: false,
             processData: false

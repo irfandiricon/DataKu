@@ -20,6 +20,7 @@ class Auth_model extends Model
 		'REFERRAL_ID',
 		'PIN',
 		'STATUS',
+		'FILE_PROFILE',
 		'CREATED_DATE',
 		'CREATED_BY',
 		'UPDATED_DATE',

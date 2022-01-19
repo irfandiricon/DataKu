@@ -11,7 +11,7 @@ $Produk = isset($Data['Produk']) ? $Data['Produk']:array();
 		    	<?php echo view('prabayar/tab', $param)?>
 		    </div>
 		</div>
-		<form action="javascript:void(0)" method="post" data-url="<?php echo base_url('pascabayar/proses/pdam') ?>" id="formData" data-proses="<?php echo base_url() ?>">
+		<form action="javascript:void(0)" method="post" id="formData" data-proses="<?php echo base_url() ?>">
 			<div class="row padbottom-20" style="padding-top: 30px;">
 			    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 padtop-10 padleft-0 padright-0">
 				    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

@@ -8,7 +8,7 @@ class CustomConfig extends \CodeIgniter\Config\BaseConfig
     Public $UrlPrepaidDev = "https://testprepaid.mobilepulsa.net/v1/legacy/index";
     Public $UrlPrepaidPro = "https://api.mobilepulsa.net/v1/legacy/index";
 
-    Public $UrlB2C = "http://localhost/ircn-dataku/api/";
+    Public $UrlB2C = "http://localhost:8080/ircn-dataku/api/";
 
     public $UserNumber = "0895320294566";
     public $ApiKey  = "871612c9464993c2";
