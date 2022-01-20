@@ -37,6 +37,31 @@ class Account extends BaseController
 		return view('template', $param);
 	}
 
+    public function history()
+    {
+        $CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+        $AuthModel = new Auth_model();
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){
+            return redirect()->to(base_url());
+        }
+
+        $EMAIL = isset($SESSION_LOGIN['EMAIL']) ? $SESSION_LOGIN['EMAIL']:"";
+
+        $CheckUser = $AuthModel->CheckRow("CUSTOMER", "EMAIL", $EMAIL);
+
+        $param = array();
+        $param['cssName'] = "Css/public.css:Css/home.css";
+        $param['jsName'] = "JavaScript/public.js";
+        $param['content'] = "history";
+        $param['SESSION_LOGIN'] = $SESSION_LOGIN;
+        $param['Profile'] = $CheckUser;
+
+        return view('template', $param);
+    }
+
     public function update_profile()
     {
         $CustomConfig = new \Config\Custom();

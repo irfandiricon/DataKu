@@ -1,11 +1,11 @@
-<footer class="footer" >
-	<div class="container">
+<footer class="footer" style="text-align: center;">
+	<!-- <div class="container"> -->
 		<div class="row">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-12">
 				2021 &copy; All Reserved | IrCn Projects
-				<hr width="100%" style="border-bottom:1px solid white;">
+				<!-- <hr width="100%" style="border-bottom:1px solid white;"> -->
 			</div>
-			<div class="col-xl-12 col-lg-12 col-md-12 col-12">
+			<!-- <div class="col-xl-12 col-lg-12 col-md-12 col-12">
 				<span class="footer-menu">
 					<a href="<?php echo base_url('hubungi-kami')?>">Hubungi Kami</a>
 				</span>
@@ -26,7 +26,7 @@
 						<a href="<?php echo base_url('keluar')?>">Keluar</a>
 					</span>
 				<?php } ?>
-			</div>
+			</div> -->
 		</div>
-	</div>
+	<!-- </div> -->
 </footer>

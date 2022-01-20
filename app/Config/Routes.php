@@ -36,6 +36,7 @@ $routes->get('/pendaftaran', 'Register::index');
 $routes->get('/masuk', 'Login::index');
 $routes->get('/keluar', 'Login::logout');
 $routes->get('/akun', 'Account::index');
+$routes->get('/riwayat-transaksi', 'Account::history');
 
 $routes->get('/pulsa-reguler', 'Prabayar::pulsa_reguler');
 $routes->get('/pulsa-transfer', 'Prabayar::pulsa_transfer');

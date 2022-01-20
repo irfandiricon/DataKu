@@ -82,39 +82,37 @@ if($PROTOCOL == "https://"){
             </div>
         </div>
     </div>
-	<div class="container" style="background-color: white; padding-left: 0; padding-right: 0;">
-		<div class="row">
-			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
-				<?php 
-					$param['SESSION_LOGIN'] = isset($SESSION_LOGIN) ? $SESSION_LOGIN: array();
-					echo view('header', $param);
-				?>
-			</div>
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
+			<?php 
+				$param['SESSION_LOGIN'] = isset($SESSION_LOGIN) ? $SESSION_LOGIN: array();
+				echo view('header', $param);
+			?>
 		</div>
+	</div>
 
-		<div class="row bg-container">
-			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
-				<?php 
-				if(isset($IsBanner) == "Yes"){
-					echo view('banner');
-				}
-				?>
-			</div>
+	<div class="row bg-container">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
+			<?php 
+			if(isset($IsBanner) == "Yes"){
+				echo view('banner');
+			}
+			?>
 		</div>
+	</div>
 
-		<div class="row">
-			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
-				<?php 
-				echo view($content);
-				?>
-			</div>
+	<div class="row" style="margin-bottom: 150px; padding: 15px;">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
+			<?php 
+			echo view($content);
+			?>
 		</div>
-		<div class="row">
-			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
-				<?php 
-				echo view('footer', $param);
-				?>
-			</div>
+	</div>
+	<div class="row" style="position: fixed; bottom: 0;">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
+			<?php 
+			echo view('footer', $param);
+			?>
 		</div>
 	</div>
 
@@ -149,6 +147,6 @@ s0.parentNode.insertBefore(s1,s0);
 <style type="text/css">
 	body{
 		font-family: 'JosefinSans-Regular';
-		background-color: #1B1E23;
+		/*background-color: #1B1E23;*/
 	}
 </style>
