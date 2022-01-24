@@ -2,6 +2,8 @@
 $HOST = $_SERVER['HTTP_HOST'];
 $PAGE = $_SERVER['REQUEST_URI'];
 $PROTOCOL = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+
+$param['SESSION_LOGIN'] = isset($SESSION_LOGIN) ? $SESSION_LOGIN: array();
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,6 +46,7 @@ $PROTOCOL = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERV
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/fontawesome/js/fontawesome.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/OwlCarousel2/dist/owl.carousel.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/sweetalert.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets'); ?>/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/select2/js/select2.full.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/bootstrap-fileinput/js/fileinput.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/bootstrap-fileinput/js/fileinput.min.js"></script>
@@ -85,7 +88,6 @@ if($PROTOCOL == "https://"){
 	<div class="row">
 		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
 			<?php 
-				$param['SESSION_LOGIN'] = isset($SESSION_LOGIN) ? $SESSION_LOGIN: array();
 				echo view('header', $param);
 			?>
 		</div>
@@ -101,20 +103,50 @@ if($PROTOCOL == "https://"){
 		</div>
 	</div>
 
-	<div class="row" style="margin-bottom: 150px; padding: 15px;">
-		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
-			<?php 
-			echo view($content);
-			?>
+	<div class="container-fluid" style="padding-right: 0; padding-left: 0;">
+		<div class="row" style="margin-bottom: 100px; padding-top: 80px;">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
+				<?php 
+				echo view($content);
+				?>
+			</div>
 		</div>
 	</div>
-	<div class="row" style="position: fixed; bottom: 0;">
-		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
-			<?php 
-			echo view('footer', $param);
-			?>
+
+	<?php 
+	if(isset($IsFooter) == "Yes"){
+	?>
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
+				<?php 
+				echo view('footer', $param);
+				?>
+			</div>
+		</div>
+	<?php } ?>
+
+	<?php 
+	if(!empty($param['SESSION_LOGIN'])){
+	?>
+	<div class="row footer-mobile t-center fixed-bottom" style="background-color: #ddd;">
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info" style="border-radius: 0; border: 1px solid #ddd;">
+			<i class="fa fa-home"></i><br>
+			<span style="font-size: 14px;">Beranda</span>
+		</div>
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info" style="border-radius: 0; border: 1px solid #ddd;">
+			<i class="fa fa-sync"></i><br>
+			<span style="font-size: 14px;">Riwayat</span>
+		</div>
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info" style="border-radius: 0; border: 1px solid #ddd;">
+			<i class="fa fa-bell"></i><br>
+			<span style="font-size: 14px;">Notifikasi</span>
+		</div>
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info" style="border-radius: 0; border: 1px solid #ddd;">
+			<i class="fa fa-user"></i><br>
+			<span style="font-size: 14px;">Akun</span>
 		</div>
 	</div>
+	<?php } ?>
 
 	<div class="modal" id="modal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-hidden="true"></div>
 

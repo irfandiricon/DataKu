@@ -14,7 +14,7 @@ function input_readonly($param)
 }
 ?>
 <form id="formData" name="formData" action="javascript:void(0)" data-url="<?php echo base_url('contactus/send')?>">
-	<div class="row" style="padding-top: 40px; padding-bottom: 40px;">
+	<div class="row">
 		<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12"></div>
 		<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
 			<div class="card">

@@ -420,6 +420,7 @@ class Pascabayar extends BaseController
 
         $Rc = isset($DataRequest->response_code) ? $DataRequest->response_code:"";
         $Message = isset($DataRequest->message) ? $DataRequest->message:"";
+        /*
         if($Rc == "00"){
         	$paraminsert['ID_REFFERENCE'] = isset($DataRequest->ref_id) ? $DataRequest->ref_id:"";
 	        $paraminsert['ID_TRANSAKSI'] = isset($DataRequest->tr_id) ? $DataRequest->tr_id:"";
@@ -454,6 +455,7 @@ class Pascabayar extends BaseController
 	            die(json_encode($JSON));
 	        }
         }
+        */
 
 		$param['Data']['inquiry'] = $DataRequest;
  

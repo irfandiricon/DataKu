@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 use App\Models\Auth_model;
+use App\Models\Transaksi_model;
 use Config\Custom;
 use CodeIgniter\Files\File;
 
@@ -42,6 +43,7 @@ class Account extends BaseController
         $CustomConfig = new \Config\Custom();
         $Apps = $CustomConfig->apps;
         $AuthModel = new Auth_model();
+        $TransaksiModel = new Transaksi_model();
 
         $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
         if(empty($SESSION_LOGIN)){
@@ -52,14 +54,44 @@ class Account extends BaseController
 
         $CheckUser = $AuthModel->CheckRow("CUSTOMER", "EMAIL", $EMAIL);
 
+        $paramHistory['EMAIL'] = $EMAIL;
+        $CheckHistory = $TransaksiModel->CheckHistory($paramHistory);
+
         $param = array();
         $param['cssName'] = "Css/public.css:Css/home.css";
         $param['jsName'] = "JavaScript/public.js";
         $param['content'] = "history";
         $param['SESSION_LOGIN'] = $SESSION_LOGIN;
         $param['Profile'] = $CheckUser;
+        $param['History'] = $CheckHistory;
 
         return view('template', $param);
+    }
+
+    public function searchhistory()
+    {
+        $CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+        $AuthModel = new Auth_model();
+        $TransaksiModel = new Transaksi_model();
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){
+            return redirect()->to(base_url());
+        }
+
+        $EMAIL = isset($SESSION_LOGIN['EMAIL']) ? $SESSION_LOGIN['EMAIL']:"";
+        $StartDate = isset($_POST['start_date']) ? $_POST['start_date']:"";
+        $EndDate = isset($_POST['end_date']) ? $_POST['end_date']:"";
+
+        $paramHistory['EMAIL'] = $EMAIL;
+        $paramHistory['START_DATE'] = $StartDate;
+        $paramHistory['END_DATE'] = $EndDate;
+        $CheckHistory = $TransaksiModel->CheckHistory($paramHistory);
+
+        $param['History'] = $CheckHistory;
+
+        return view('history_transaksi', $param);
     }
 
     public function update_profile()

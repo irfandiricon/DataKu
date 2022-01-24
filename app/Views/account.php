@@ -11,7 +11,7 @@ $PIN_DESCRIPTION = $PIN == "" ? "Buat PIN" : "Ubah PIN";
 
 $paramprofile = base64_encode(json_encode($Profile));
 ?>
-<div class="row" style="padding-top: 40px; padding-bottom: 40px;">
+<div class="row">
 	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 		<div class="row">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

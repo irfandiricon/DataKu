@@ -1,3 +1,23 @@
+@media only screen and (max-width: 992px) {
+	div.footer-mobile{
+		display: flex;
+	}
+
+	.nav-desktop{
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	div.footer-mobile{
+		display: none;
+	}
+
+	.nav-desktop{
+		display: block;
+	}
+}
+
 body{
 	overflow-x: hidden;
 }
@@ -67,8 +87,8 @@ div.dropdown-menu a.dropdown-item i{
 }
 
 .footer{
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	background-color: #17a2b8 !important;
 	color: white;
 	bottom: 0;
@@ -146,6 +166,30 @@ input, select, button{
 
 .padbottom-20{
 	padding-bottom: 20px;
+}
+
+.martop-0{
+	margin-top: 0;
+}
+
+.martop-10{
+	margin-top: 10px;
+}
+
+.martop-20{
+	margin-top: 20px;
+}
+
+.marbottom-0{
+	margin-bottom: 0;
+}
+
+.marbottom-10{
+	margin-bottom: 10px;
+}
+
+.marbottom-20{
+	margin-bottom: 20px;
 }
 
 .t-bold{

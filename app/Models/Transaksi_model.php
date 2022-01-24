@@ -32,6 +32,25 @@ class Transaksi_model extends Model
 	protected $createdField         = 'created_date';
 	protected $updatedField         = 'updated_date';
 
+	public function CheckHistory($param)
+	{
+		$db = \Config\Database::connect();
+
+		$Email = isset($param['EMAIL']) ? $param['EMAIL']:"";
+		$START_DATE = isset($param['START_DATE']) ? $param['START_DATE']: date('Y-m-01');
+		$END_DATE = isset($param['END_DATE']) ? $param['END_DATE']: date('Y-m-t');
+ 
+		$StartDate = date("Y-m-d 00:00:00", strtotime($START_DATE));
+		$EndDate = date("Y-m-d 23:59:59", strtotime($END_DATE));
+
+		$Query = "SELECT * FROM V_TRANSAKSI
+			WHERE CREATED_BY = '".$Email."' 
+			AND CREATED_DATE BETWEEN '".$StartDate."' AND '".$EndDate."'";
+		$run = $db->query($Query);
+		$row = $run->getResult();
+		return $row;	
+	}
+
 	public function updatetransaksi($param)
 	{
 		$db = \Config\Database::connect();

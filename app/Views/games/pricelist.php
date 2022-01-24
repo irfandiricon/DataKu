@@ -29,7 +29,7 @@ $IdPelanggan = isset($Data['idpelanggan']) ? $Data['idpelanggan']:"";
 
 		$SendConfirm = base64_encode(json_encode($param));
 	?>
-		<div class="col-xl-4 col-lg-3 col-md-3 col-sm-4 col-6" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
     		<div class="card card-price" style="cursor: pointer; border-radius: 1rem;" data-toggle="tooltip" data-placement="bottom" title="<?php echo $DESCRIPTION ?>">
 				<div class="card-body box-card-price" id="card-price-<?php echo $i ?>" onclick="modal('modal-md', 'Konfirmasi Pesanan', 'games/modal_confirm', '<?php echo $SendConfirm; ?>', 'games/proses', '<?php echo base_url() ?>')">
     				<div class="row">

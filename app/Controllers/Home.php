@@ -23,6 +23,7 @@ class Home extends BaseController
 		$param['content'] = "home";
 		$param['SESSION_LOGIN'] = $SESSION_LOGIN;
 		// $param['IsBanner'] = "Yes";
+		$param['IsFooter'] = "Yes";
 
 		$RetrieveKategori = json_decode(file_get_contents(base_url('api/kategori')));
 		$param['Data']['kategori'] = $RetrieveKategori;
