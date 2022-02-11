@@ -40,6 +40,12 @@
 						<i class="fa fa-history"></i> Riwayat Transaksi
 					</a>
 				</li>
+				<li class="nav-item nav-desktop">
+					<a class="nav-link open-preloader" href="<?php echo base_url('riwayat-transaksi')?>">
+						<i class="fa fa-bell"></i> Notifikasi
+						<span class="badge badge-pill badge-danger" style="font-weight: normal; margin-left: 3px;">0</span>
+					</a>
+				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fa fa-cog"></i> Pengaturan

@@ -1,12 +1,11 @@
 DELIMITER $$
 
-USE `ircm7344_dataku`$$
+USE `pusb8564_dataku`$$
 
 DROP TRIGGER /*!50032 IF EXISTS */ `AU_CUSTOMER`$$
 
 CREATE
-    /*!50017 DEFINER = 'root'@'localhost' */
-    TRIGGER `AU_CUSTOMER` AFTER UPDATE ON `customer` 
+    TRIGGER `AU_CUSTOMER` AFTER UPDATE ON `CUSTOMER` 
     FOR EACH ROW BEGIN
 	SET @vOldEmail = OLD.EMAIL;
 	SET @vNewEmail = NEW.EMAIL;
