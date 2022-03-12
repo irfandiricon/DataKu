@@ -500,7 +500,7 @@ class Account extends BaseController
         if ($file->isValid() && !$file->hasMoved()){
             $file->move(ROOTPATH.'/'.$PathFile,$FileName);
 
-            $paramupdate['FILE_PROFILE'] = $PathName;
+            $paramupdate['FILE_PROFILE'] = base_url()."/".$PathName;
             $Retrieve =  $AuthModel->update($ID, $paramupdate);
             if(!$Retrieve){
                 $ERROR_MESSAGE = "Gagal memperbaharui data photo!";

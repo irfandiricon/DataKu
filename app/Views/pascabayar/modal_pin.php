@@ -27,6 +27,7 @@ $IdPelanggan = isset($rows['IdPelanggan']) ? $rows['IdPelanggan']:"";
 <script type="text/javascript">
 	$(function(){
 		$('button#submit').html('Bayar Sekarang');
+		$('button#submit').attr('onclick','submitformtransaksi()');
 
 		document.getElementById('pin1').focus();
 		$('#pin1').on('keyup', function(){

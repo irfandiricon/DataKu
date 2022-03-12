@@ -32,12 +32,12 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="row padtop-10">
+					<div class="row">
 						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"></div>
 						<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
-							<input type="checkbox" name="cbox" style="height: auto !important;"> Remember Me
+							<a href="<?php echo base_url('lupa-password') ?>">Lupa password ?</a>
 						</div>
-					</div> -->
+					</div>
 					<div class="row padtop-20">
 						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"></div>
 						<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
@@ -47,7 +47,7 @@
 					</div>
 					<div class="row" style="padding-top: 30px;">
 						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-							<div class="box" onclick="google('<?php echo base_url() ?>/register/gmail')">
+							<div class="box" onclick="google('<?php echo base_url() ?>/login/gmail')">
 								<img src="<?php echo base_url('assets/image/google.png')?>" style="width:17px; height: auto;">
 								&nbsp;Masuk dengan Google
 							</div>
@@ -55,7 +55,7 @@
 							<div class="g-signin2" data-onsuccess="onSignIn"></div>
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-							<div class="box">
+							<div class="box" onclick="facebook('<?php echo base_url() ?>/login/facebook')">
 								<img src="<?php echo base_url('assets/image/fb.png')?>" style="width:17px; height: auto;">
 								&nbsp;Masuk dengan Facebook
 							</div>

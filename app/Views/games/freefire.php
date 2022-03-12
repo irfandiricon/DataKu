@@ -43,7 +43,7 @@ $param['Url'] = $Data['Url'];
 		var url = form.data('proses');
 		var data = form.serialize();
 		$.ajax({
-			url : url+'/games/view_price/pubgmobile',
+			url : url+'/games/view_price/freefire',
 			data : data,
 			cache : false,
 			type : 'post',

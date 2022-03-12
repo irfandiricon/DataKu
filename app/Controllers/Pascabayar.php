@@ -122,6 +122,40 @@ class Pascabayar extends BaseController
 		return view('template', $param);
 	}
 
+	public function halo()
+	{
+		$CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){
+            return redirect()->to(base_url('masuk'));
+        }
+
+		$param = array();
+		$param['cssName'] = "Css/public.css";
+		$param['jsName'] = "JavaScript/public.js";
+		$param['content'] = "pascabayar/halo";
+		$param['SESSION_LOGIN'] = $SESSION_LOGIN;
+
+		$Service = new Service();
+
+		$DataKategori = array();
+
+		$RetrieveKategori = json_decode(file_get_contents(base_url('api/kategori')));
+		foreach($RetrieveKategori as $row){
+			$NAME = isset($row->NAME) ? $row->NAME:"";
+			if($NAME == "PASCABAYAR"){
+				$DataKategori[] = $row;
+			}
+		}
+
+		$param['Data']['kategori'] = $DataKategori;
+		$param['Data']['Url'] = "halo";
+		$param['Data']['Month'] = $Service->month();
+		return view('template', $param);
+	}
+
 	public function telepon_pascabayar()
 	{
 		$CustomConfig = new \Config\Custom();
@@ -402,6 +436,8 @@ class Pascabayar extends BaseController
 			$PROVIDER = "PLNPOSTPAID";
 		}elseif($TYPE == "bpjs"){
 			$PROVIDER = "BPJS";
+		}elseif($TYPE == "halo"){
+			$PROVIDER = "HPTSELB";
 		}else{
 			$PROVIDER = $PROVIDER;
 		}
@@ -420,43 +456,7 @@ class Pascabayar extends BaseController
 
         $Rc = isset($DataRequest->response_code) ? $DataRequest->response_code:"";
         $Message = isset($DataRequest->message) ? $DataRequest->message:"";
-        /*
-        if($Rc == "00"){
-        	$paraminsert['ID_REFFERENCE'] = isset($DataRequest->ref_id) ? $DataRequest->ref_id:"";
-	        $paraminsert['ID_TRANSAKSI'] = isset($DataRequest->tr_id) ? $DataRequest->tr_id:"";
-	        $paraminsert['KODE_PRODUK'] = isset($DataRequest->code) ? $DataRequest->code:"";
-	        $paraminsert['NO_PELANGGAN'] = isset($DataRequest->hp) ? $DataRequest->hp:"";
-	        $paraminsert['JUMLAH_BAYAR'] = isset($DataRequest->price) ? $DataRequest->price:0;
-	        $paraminsert['STATUS_TRANSAKSI'] = isset($DataRequest->response_code) ? $DataRequest->response_code:0;
-	        $paraminsert['PESAN'] = isset($DataRequest->message) ? $DataRequest->message:"";
-	        $paraminsert['CREATED_DATE'] = date('Y-m-d H:i:s');
-	        $paraminsert['CREATED_BY'] = $CREATED_BY;
-
-	        $RetrieveInsert = $TransaksiModel->insert($paraminsert);
-	        if(!$RetrieveInsert){
-	        	$ERROR_MESSAGE = "Gagal menyimpan data transaksi!";
-	            $ERROR_CODE = "EC:004A";
-	            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE);
-	            die(json_encode($JSON));
-	        }
-	        
-	        $paramlog['TIPE'] = "REQUEST";
-			$paramlog['ID_REFFERENCE'] = isset($DataRequest->ref_id) ? $DataRequest->ref_id:"";
-			$paramlog['ID_TRANSAKSI'] = isset($DataRequest->tr_id) ? $DataRequest->tr_id:"";
-			$paramlog['DESCRIPTION'] = json_encode($DataRequest);
-			$paramlog['CREATED_DATE'] = date('Y-m-d H:i:s');
-			$paramlog['CREATED_BY'] = $CREATED_BY;
-
-			$RetrieveLog =  $LogTransaksiModel->insert($paramlog);
-	        if(!$RetrieveLog){
-	        	$ERROR_MESSAGE = "Gagal menyimpan data log transaksi!";
-	            $ERROR_CODE = "EC:005A";
-	            $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE);
-	            die(json_encode($JSON));
-	        }
-        }
-        */
-
+        
 		$param['Data']['inquiry'] = $DataRequest;
  
 		return view('pascabayar/pricelist_'.strtolower($TYPE), $param);
@@ -503,7 +503,7 @@ class Pascabayar extends BaseController
             die(json_encode($JSON));
         }
 
-		if(in_array($type, array("pln","bpjs","pdam","multifinance","telepon","esamsat","tvkabel","pbb","internet","gas"))){
+		if(in_array($type, array("pln","bpjs","pdam","halo","multifinance","telepon","esamsat","tvkabel","pbb","internet","gas"))){
 			$UrlRequest = base_url('api/paymentpostpaid')."/".$TrId;
 		}else{
 			$ERROR_MESSAGE = "Produk tidak terdaftar!";

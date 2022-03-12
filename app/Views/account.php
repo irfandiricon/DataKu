@@ -6,6 +6,7 @@ $REFERRAL_ID = isset($Profile->REFERRAL_ID) ? $Profile->REFERRAL_ID:"";
 $IS_AGEN = isset($Profile->IS_AGEN) ? $Profile->IS_AGEN:"";
 $PIN = isset($Profile->PIN) ? $Profile->PIN:"";
 $FILE_PROFILE = isset($Profile->FILE_PROFILE) ? $Profile->FILE_PROFILE:"";
+$REGISTERED_BY = isset($Profile->REGISTERED_BY) ? $Profile->REGISTERED_BY:"";
 
 $PIN_DESCRIPTION = $PIN == "" ? "Buat PIN" : "Ubah PIN";
 
@@ -24,7 +25,8 @@ $paramprofile = base64_encode(json_encode($Profile));
 					<div class="card-body t-center">
 						<div class="row">
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-								<img src="<?php echo base_url().'/'.$FILE_PROFILE; ?>" class="img img-fluid img-rounded" style="height: 130px; width: auto;">
+								<img src="<?php echo $FILE_PROFILE  ?>" class="img img-fluid img-rounded" style="height: 130px; width: auto;" onerror="this.onerror=null; this.src='<?php echo base_url()?>/assets/image/profile/users.png';">
+
 								<div class="box-picture" onclick="modal('modal-lg', 'Photo Profil', 'modal/modal_form_photo_profile', '<?php echo $paramprofile ?>', 'account/update_photo_profile', '<?php echo base_url() ?>')">
 									<i class="fa fa-camera" style="font-size: 24px; padding-top: 4px; color: darkred;"></i>
 								</div>
@@ -96,7 +98,7 @@ $paramprofile = base64_encode(json_encode($Profile));
 								<span class="f-size-20"><?php echo $REFERRAL_ID; ?></span>
 							</div>
 						</div>
-						<?php
+						<!-- <?php
 						if($IS_AGEN == "NO"){
 						?>
 						<div class="row padtop-10">
@@ -110,7 +112,7 @@ $paramprofile = base64_encode(json_encode($Profile));
 								</p>
 							</div>
 						</div>
-						<?php } ?>
+						<?php } ?> -->
 					</div>
 				</div>
 			</div>

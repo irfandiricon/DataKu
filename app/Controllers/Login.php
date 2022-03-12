@@ -89,25 +89,50 @@ class Login extends BaseController
             die(json_encode($JSON));
         }
 
-        $uCookies = $CustomConfig->uCookies;
-        $pCookies = $CustomConfig->pCookies;
-        $Token = md5($uCookies.$pCookies);
+        $param['ID'] = isset($CheckUser->ID) ? $CheckUser->ID:"";
+        $param['NAME'] = isset($CheckUser->NAME) ? $CheckUser->NAME:"";
+        $param['EMAIL'] = isset($CheckUser->EMAIL) ? $CheckUser->EMAIL:"";
+        $param['NO_HP'] = isset($CheckUser->NO_HP) ? $CheckUser->NO_HP:"";
+        $param['IS_AGEN'] = isset($CheckUser->IS_AGEN) ? $CheckUser->IS_AGEN:"";
+        $param['REFERRAL_ID'] = $REFERRAL_ID;
+        $param['STATUS'] = $STATUS;
 
-        if($CBOX == "on"){
-            $cookie = new Cookie(
-                'remember_token',$Token,
-                [
-                    'expires'  => new DateTime('+2 hours'),
-                    'prefix'   => '__Secure-',
-                    'path'     => '/',
-                    'domain'   => '',
-                    'secure'   => true,
-                    'httponly' => true,
-                    'raw'      => false,
-                    'samesite' => Cookie::SAMESITE_LAX,
-                ]
-            );
+        $_SESSION['SESSION_LOGIN'][$Apps] = $param;
+
+        $JSON['ERROR_CODE'] = "EC:0000";
+        $JSON['ERROR_MESSAGE'] = "Sukses";
+        $JSON['UrlPage'] = base_url('akun');
+        die(json_encode($JSON));
+    }
+
+    public function gmail(){
+        $AuthModel = new Auth_model();
+        $Service = new Service();
+        $CustomConfig = new Custom();
+        $Apps = $CustomConfig->apps;
+
+        $ReferralId = $Service->generateReferral();
+
+        $email = isset($_POST['email']) ? $_POST['email']:"";
+        $fullname = isset($_POST['fullname']) ? $_POST['fullname']:"";
+        $photoURL = isset($_POST['photoURL']) ? $_POST['photoURL']:"";
+        $phoneNumber = isset($_POST['phoneNumber']) ? $_POST['phoneNumber']:"";
+        $emailVerified = isset($_POST['emailVerified']) ? $_POST['emailVerified']:"";
+
+        if(empty($email)){
+            $JSON = array("ERROR_CODE"=>"EC:001A", "ERROR_MESSAGE"=>"Email tidak ditemukan!");
+            die(json_encode($JSON));
         }
+
+        $CheckUser = $AuthModel->CheckRow("CUSTOMER", "EMAIL", $email);
+        if(empty($CheckUser)){
+            $JSON['ERROR_CODE'] = "EC:002A";
+            $JSON['ERROR_MESSAGE'] = "Email anda tidak terdaftar, silahkan registrasi terlebih dahulu";
+            die(json_encode($JSON));
+        }
+
+        $REFERRAL_ID = isset($CheckUser->REFERRAL_ID) ? $CheckUser->REFERRAL_ID:"";
+        $STATUS = isset($CheckUser->STATUS) ? $CheckUser->STATUS:"";
 
         $param['ID'] = isset($CheckUser->ID) ? $CheckUser->ID:"";
         $param['NAME'] = isset($CheckUser->NAME) ? $CheckUser->NAME:"";
@@ -121,7 +146,7 @@ class Login extends BaseController
 
         $JSON['ERROR_CODE'] = "EC:0000";
         $JSON['ERROR_MESSAGE'] = "Sukses";
-        $JSON['UrlPage'] = isset($_SESSION['_ci_previous_url']) ? $_SESSION['_ci_previous_url']: base_url();
+        $JSON['UrlPage'] = base_url('akun');
         die(json_encode($JSON));
     }
 

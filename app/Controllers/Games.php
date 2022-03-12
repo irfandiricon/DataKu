@@ -139,6 +139,99 @@ class Games extends BaseController
 		return view('template', $param);
 	}
 
+	public function freefire()
+	{
+		$CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){
+            return redirect()->to(base_url('masuk'));
+        }
+
+		$param = array();
+		$param['cssName'] = "Css/public.css";
+		$param['jsName'] = "JavaScript/public.js";
+		$param['content'] = "games/freefire";
+		$param['SESSION_LOGIN'] = $SESSION_LOGIN;
+
+		$DataKategori = array();
+
+		$RetrieveKategori = json_decode(file_get_contents(base_url('api/kategori')));
+		foreach($RetrieveKategori as $row){
+			$NAME = isset($row->NAME) ? $row->NAME:"";
+			if($NAME == "VOUCHER GAME"){
+				$DataKategori[] = $row;
+			}
+		}
+
+		$param['Data']['kategori'] = $DataKategori;
+		$param['Data']['Url'] = "free-fire";
+		return view('template', $param);
+	}
+
+	public function higgsdomino()
+	{
+		$CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){
+            return redirect()->to(base_url('masuk'));
+        }
+
+		$param = array();
+		$param['cssName'] = "Css/public.css";
+		$param['jsName'] = "JavaScript/public.js";
+		$param['content'] = "games/higgsdomino";
+		$param['SESSION_LOGIN'] = $SESSION_LOGIN;
+
+		$DataKategori = array();
+
+		$RetrieveKategori = json_decode(file_get_contents(base_url('api/kategori')));
+		foreach($RetrieveKategori as $row){
+			$NAME = isset($row->NAME) ? $row->NAME:"";
+			if($NAME == "VOUCHER GAME"){
+				$DataKategori[] = $row;
+			}
+		}
+
+		$param['Data']['kategori'] = $DataKategori;
+		$param['Data']['Url'] = "higgs-domino";
+		return view('template', $param);
+	}
+
+	public function ragnarok()
+	{
+		$CustomConfig = new \Config\Custom();
+        $Apps = $CustomConfig->apps;
+
+        $SESSION_LOGIN = isset($_SESSION['SESSION_LOGIN'][$Apps]) ? $_SESSION['SESSION_LOGIN'][$Apps]:array();
+        if(empty($SESSION_LOGIN)){
+            return redirect()->to(base_url('masuk'));
+        }
+
+		$param = array();
+		$param['cssName'] = "Css/public.css";
+		$param['jsName'] = "JavaScript/public.js";
+		$param['content'] = "games/ragnarok";
+		$param['SESSION_LOGIN'] = $SESSION_LOGIN;
+
+		$DataKategori = array();
+
+		$RetrieveKategori = json_decode(file_get_contents(base_url('api/kategori')));
+		foreach($RetrieveKategori as $row){
+			$NAME = isset($row->NAME) ? $row->NAME:"";
+			if($NAME == "VOUCHER GAME"){
+				$DataKategori[] = $row;
+			}
+		}
+
+		$param['Data']['kategori'] = $DataKategori;
+		$param['Data']['Url'] = "ragnarok";
+		return view('template', $param);
+	}
+
 	public function view_price($TYPE = '')
 	{
 		$GamesModel = New Games_model();

@@ -39,6 +39,139 @@ $(function(){
     });
 });
 
+$(function(){
+    var firebaseConfig = {
+        apiKey: "AIzaSyDFNMiADR_muAqD__UM67ACxnw7fKsN5tE",
+        authDomain: "pusat-evoucher.firebaseapp.com",
+        projectId: "pusat-evoucher",
+        storageBucket: "pusat-evoucher.appspot.com",
+        messagingSenderId: "890004997602",
+        appId: "1:890004997602:web:47862b20642b79e9d9e5bb",
+        measurementId: "G-9RGHMMHQ1B",
+        databaseURL: "pusat-evoucher.firebaseio.com"
+    };
+      
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+});
+
+function google(url){
+    $('.preloader').fadeIn();
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+        var data = {
+            'email' : user.email,
+            'fullname' : user.displayName,
+            'photoURL' : user.photoURL,
+            'phoneNumber' : user.phoneNumber,
+            'emailVerified' : user.emailVerified
+        }
+
+        $.ajax({
+            url : url,
+            data : data,
+            type : 'post',
+            dataType : 'json',
+            cache : false,
+            beforeSend : function(){
+                $('.preloader').fadeIn();
+            },
+            success : function(res){
+                var ErrorCode = res.ERROR_CODE;
+                var ErrorMessage = res.ERROR_MESSAGE;
+                if(ErrorCode != "EC:0000"){
+                    $('.preloader').fadeOut();
+                    Swal.fire({
+                        icon: 'error',
+                        html: ErrorMessage,
+                        confirmButton: true,
+                        confirmButtonColor : '#1FB3E5',
+                        confirmButtonText : 'Close'
+                    });
+                }else{
+                    var UrlPage = res.UrlPage;
+                    window.location.href = UrlPage;
+                }
+            }
+        });
+    }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        $('.preloader').fadeOut();
+        Swal.fire({
+            icon: 'warning',
+            html: errorMessage,
+            cancelButton: true,
+            cancelButtonColor : '#1FB3E5',
+            cancelButtonText : 'CLOSE',
+            allowOutsideClick : false,
+            allowEscapeKey : false
+        });
+    });
+}
+
+function facebook(){
+    $('.preloader').fadeIn();
+    var provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+        var data = {
+            'email' : user.email,
+            'fullname' : user.displayName,
+            'photoURL' : user.photoURL,
+            'phoneNumber' : user.phoneNumber,
+            'emailVerified' : user.emailVerified
+        }
+        $.ajax({
+            url : 'register/facebook',
+            data : data,
+            type : 'post',
+            dataType : 'json',
+            cache : false,
+            beforeSend : function(){
+                $('.preloader').fadeIn();
+            },
+            success : function(res){
+                var ErrorCode = res.ERROR_CODE;
+                var ErrorMessage = res.ERROR_MESSAGE;
+                if(ErrorCode != "EC:0000"){
+                    $('.preloader').fadeOut();
+                    Swal.fire({
+                        icon: 'error',
+                        html: ErrorMessage,
+                        confirmButton: true,
+                        confirmButtonColor : '#1FB3E5',
+                        confirmButtonText : 'Close'
+                    });
+                }else{
+                    var UrlPage = res.UrlPage;
+                    window.location.href = UrlPage;
+                }
+            }
+        });
+    }).catch(function(error) {
+        $('.preloader').fadeOut();
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        Swal.fire({
+            icon: 'warning',
+            html: errorMessage,
+            cancelButton: true,
+            cancelButtonColor : '#1FB3E5',
+            cancelButtonText : 'CLOSE',
+            allowOutsideClick : false,
+            allowEscapeKey : false
+        });
+    });
+}
+
 function modal(modal, title, file, row, action, base_url){
     var protocol = window.location.protocol;
     var hostname = window.location.hostname;
@@ -162,12 +295,53 @@ function submitformmodal(){
                     icon: 'success',
                     title: error_message,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer : 1500
                 });
                 setTimeout(function(){
                     $('.preloader').fadeIn();
                     window.location.reload();
                 },1500);
+
+            }
+        }
+    });
+}
+
+function submitformtransaksi(){
+    var form = $('#formDataModal');
+    var data = form.serialize();
+    var url = form.data('url');
+    $.ajax({
+        url : url,
+        data : data,
+        type : 'post',
+        dataType : 'json',
+        cache : false,
+        beforeSend : function(){
+            $('.preloader').fadeIn();
+        },
+        success : function(res){
+            $('.preloader').fadeOut();
+            var error_message = res.ERROR_MESSAGE;
+            var error_code = res.ERROR_CODE;
+            if(error_code != "EC:0000"){
+                Swal.fire({
+                    icon: 'error',
+                    html: error_message,
+                    confirmButton: true,
+                    confirmButtonColor : '#1FB3E5',
+                    confirmButtonText : 'Close'
+                });
+            }else{
+                $('#price-list div').remove();
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: error_message,
+                    showConfirmButton: true
+                });
+                $('.modal').modal('hide');
+
             }
         }
     });
@@ -196,165 +370,4 @@ function hanyaAngka(evt) {
 
     return false;
     return true;
-}
-
-$(function(){
-    var firebaseConfig = {
-        apiKey: "AIzaSyDFNMiADR_muAqD__UM67ACxnw7fKsN5tE",
-        authDomain: "pusat-evoucher.firebaseapp.com",
-        projectId: "pusat-evoucher",
-        storageBucket: "pusat-evoucher.appspot.com",
-        messagingSenderId: "890004997602",
-        appId: "1:890004997602:web:47862b20642b79e9d9e5bb",
-        measurementId: "G-9RGHMMHQ1B"
-    };
-      
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-});
-
-function google(url){
-    $('.preloader').fadeIn();
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-        
-        var token = result.credential.accessToken;
-        var user = result.user;
-        var data = {
-            'email' : user.email,
-            'fullname' : user.displayName,
-            'photoURL' : user.photoURL,
-            'phoneNumber' : user.phoneNumber,
-            'emailVerified' : user.emailVerified
-        }
-
-        $.ajax({
-            url : url,
-            data : data,
-            type : 'post',
-            dataType : 'json',
-            cache : false,
-            beforeSend : function(){
-                $('.preloader').fadeIn();
-            },
-            success : function(res){
-                var ERROR_CODE = res.ERROR_CODE;
-                var ERROR_MESSAGE = res.ERROR_MESSAGE;
-
-                if(ERROR_CODE == "EC:0000"){
-                    $('.preloader').fadeOut();
-                    Swal.fire({
-                        type: 'success',
-                        title: ERROR_MESSAGE,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    setTimeout(function(){
-                        window.location.reload();
-                    },1500);
-                }else{
-                    $('.preloader').fadeOut();
-                    firebase.auth().signOut().then(function() {}, function(error) {
-                        console.error('Sign Out Error', error);
-                    });
-                    Swal.fire({
-                        type: 'warning',
-                        html: ERROR_MESSAGE,
-                        cancelButton: true,
-                        cancelButtonColor : '#1FB3E5',
-                        cancelButtonText : 'CLOSE',
-                        allowOutsideClick : false,
-                        allowEscapeKey : false
-                    });
-                }
-            }
-        });
-    }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-        $('.preloader').fadeOut();
-        Swal.fire({
-            type: 'warning',
-            html: errorMessage,
-            cancelButton: true,
-            cancelButtonColor : '#1FB3E5',
-            cancelButtonText : 'CLOSE',
-            allowOutsideClick : false,
-            allowEscapeKey : false
-        });
-    });
-}
-
-function facebook(){
-    $('.preloader').fadeIn();
-    var provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-        var token = result.credential.accessToken;
-        var user = result.user;
-        var data = {
-            'email' : user.email,
-            'fullname' : user.displayName,
-            'photoURL' : user.photoURL,
-            'phoneNumber' : user.phoneNumber,
-            'emailVerified' : user.emailVerified
-        }
-        $.ajax({
-            url : 'register/facebook',
-            data : data,
-            type : 'post',
-            dataType : 'json',
-            cache : false,
-            beforeSend : function(){
-                $('.preloader').fadeIn();
-            },
-            success : function(res){
-                var ERROR_CODE = res.ERROR_CODE;
-                var ERROR_MESSAGE = res.ERROR_MESSAGE;
-
-                if(ERROR_CODE == "EC:0000"){
-                    $('.preloader').fadeOut();
-                    Swal.fire({
-                        type: 'success',
-                        title: ERROR_MESSAGE,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    setTimeout(function(){
-                        window.location.reload();
-                    },1500);
-                }else{
-                    $('.preloader').fadeOut();
-                    firebase.auth().signOut().then(function() {}, function(error) {
-                        console.error('Sign Out Error', error);
-                    });
-                    Swal.fire({
-                        type: 'warning',
-                        html: ERROR_MESSAGE,
-                        cancelButton: true,
-                        cancelButtonColor : '#1FB3E5',
-                        cancelButtonText : 'CLOSE',
-                        allowOutsideClick : false,
-                        allowEscapeKey : false
-                    });
-                }
-            }
-        });
-    }).catch(function(error) {
-        $('.preloader').fadeOut();
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-        Swal.fire({
-            type: 'warning',
-            html: errorMessage,
-            cancelButton: true,
-            cancelButtonColor : '#1FB3E5',
-            cancelButtonText : 'CLOSE',
-            allowOutsideClick : false,
-            allowEscapeKey : false
-        });
-    });
 }

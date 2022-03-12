@@ -13,8 +13,8 @@ $param['SESSION_LOGIN'] = isset($SESSION_LOGIN) ? $SESSION_LOGIN: array();
     <meta name="author" content="SoapTheme">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <!-- <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="469965144772-im7bs20t1bghdf0f1pmrg0boervs8cg6.apps.googleusercontent.com"> -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="469965144772-im7bs20t1bghdf0f1pmrg0boervs8cg6.apps.googleusercontent.com">
     
 	<link rel="shortcut icon" href="<?php echo base_url('assets'); ?>/image/logo.png" type="image/png">
 	<link rel="stylesheet" href="<?php echo base_url('assets'); ?>/bootstrap/dist/css/bootstrap.min.css">
@@ -54,11 +54,23 @@ $param['SESSION_LOGIN'] = isset($SESSION_LOGIN) ? $SESSION_LOGIN: array();
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/bootstrap-fileinput/js/fileinput.min.js"></script>
 
     <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+   <!--  <script type="text/javascript" src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js"></script> -->
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js"></script> -->
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script -->
 
+	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<!-- <script defer src="./init-firebase.js"></script> -->
+
+ 	
     <?php
     if(!empty($jsName)){
 	    $AddtionalJs = explode(":",$jsName);
@@ -122,7 +134,7 @@ if($PROTOCOL == "https://"){
 			</div>
 		</div>
 		<div class="row" style="margin-bottom: 100px; padding-top: 110px;">
-			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0;">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0; padding-top: 30px;">
 				<?php 
 				echo view($content);
 				?>
@@ -146,19 +158,19 @@ if($PROTOCOL == "https://"){
 	if(!empty($param['SESSION_LOGIN'])){
 	?>
 	<div class="row footer-mobile t-center fixed-bottom" style="background-color: #ddd;">
-		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/home'">
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info open-preloader" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/home'">
 			<i class="fa fa-home"></i><br>
 			<span style="font-size: 14px;">Beranda</span>
 		</div>
-		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/riwayat-transaksi'">
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info open-preloader" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/riwayat-transaksi'">
 			<i class="fa fa-sync"></i><br>
 			<span style="font-size: 14px;">Riwayat</span>
 		</div>
-		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/notifikasi'">
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info open-preloader" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/notifikasi'">
 			<i class="fa fa-bell"></i><br>
 			<span style="font-size: 14px;">Notifikasi</span>
 		</div>
-		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/akun'">
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info open-preloader" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/akun'">
 			<i class="fa fa-user"></i><br>
 			<span style="font-size: 14px;">Akun</span>
 		</div>
@@ -178,25 +190,25 @@ if($PROTOCOL == "https://"){
 	<script type="text/javascript">
 		var countDownDate = new Date("Apr 01, 2022 00:00:00").getTime();
 		var x = setInterval(function() {
-		  var now = new Date().getTime();
-		  var distance = countDownDate - now;
+		var now = new Date().getTime();
+		var distance = countDownDate - now;
 
-		  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-		  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-		  document.getElementById("countdown").innerHTML = days + " Hari, " + addzero(hours) + " : "+ addzero(minutes) + " : " + addzero(seconds);
+		document.getElementById("countdown").innerHTML = days + " Hari, " + addzero(hours) + " : "+ addzero(minutes) + " : " + addzero(seconds);
 
-		  if (distance < 0) {
-		    clearInterval(x);
-		    document.getElementById("countdown").innerHTML = "EXPIRED";
-		  }
+		if (distance < 0) {
+			clearInterval(x);
+			document.getElementById("countdown").innerHTML = "EXPIRED";
+		}
 		}, 1000);
 
 		function addzero(x){
-		   y=(x>9)?x:'0'+x;
-		   return y;
+			y=(x>9)?x:'0'+x;
+			return y;
 		}
 	</script>
 </body>

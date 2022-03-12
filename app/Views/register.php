@@ -72,13 +72,13 @@
 					</div>
 					<div class="row" style="padding-top: 30px;">
 						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-							<div class="box">
+							<div class="box" onclick="google('<?php echo base_url() ?>/register/gmail')">
 								<img src="<?php echo base_url('assets/image/google.png')?>" style="width:17px; height: auto;">
 								&nbsp;Daftar dengan Google
 							</div>
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-							<div class="box">
+							<div class="box" onclick="facebook('<?php echo base_url() ?>/register/facebook')">
 								<img src="<?php echo base_url('assets/image/fb.png')?>" style="width:17px; height: auto;">
 								&nbsp;Daftar dengan Facebook
 							</div>

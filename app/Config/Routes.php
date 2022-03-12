@@ -48,6 +48,7 @@ $routes->get('/voucher-interner', 'Prabayar::voucher_internet');
 $routes->get('/pln-pascabayar', 'Pascabayar::pln_pascabayar');
 $routes->get('/bpjs', 'Pascabayar::bpjs');
 $routes->get('/pdam', 'Pascabayar::pdam');
+$routes->get('/halo', 'Pascabayar::halo');
 $routes->get('/telepon-pascabayar', 'Pascabayar::telepon_pascabayar');
 $routes->get('/multifinance', 'Pascabayar::multifinance');
 $routes->get('/e-samsat', 'Pascabayar::esamsat');
@@ -66,6 +67,9 @@ $routes->get('/mobile-legends', 'Games::mobile_legends');
 $routes->get('/pubg', 'Games::pubg');
 $routes->get('/call-of-duty', 'Games::cod');
 $routes->get('/arena-of-valor', 'Games::aov');
+$routes->get('/free-fire', 'Games::freefire');
+$routes->get('/higgs-domino', 'Games::higgsdomino');
+$routes->get('/ragnarok', 'Games::ragnarok');
 
 $routes->add('/pricelist/getprice', 'Pricelist::getprice');
 $routes->add('/pricelist/getprice/(:any)', 'Pricelist::getprice/$1');
