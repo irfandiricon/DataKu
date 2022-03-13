@@ -7,8 +7,10 @@ $IS_AGEN = isset($Profile->IS_AGEN) ? $Profile->IS_AGEN:"";
 $PIN = isset($Profile->PIN) ? $Profile->PIN:"";
 $FILE_PROFILE = isset($Profile->FILE_PROFILE) ? $Profile->FILE_PROFILE:"";
 $REGISTERED_BY = isset($Profile->REGISTERED_BY) ? $Profile->REGISTERED_BY:"";
+$PASSWORD = isset($Profile->PASSWORD) ? $Profile->PASSWORD:"";
 
 $PIN_DESCRIPTION = $PIN == "" ? "Buat PIN" : "Ubah PIN";
+$PASSWORD_DESCRIPTION = empty($PASSWORD) ? "Buat Password" : "Ubah Password";
 
 $paramprofile = base64_encode(json_encode($Profile));
 ?>
@@ -42,7 +44,7 @@ $paramprofile = base64_encode(json_encode($Profile));
 						<div class="row padtop-10">
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<button class="btn btn-warning btn-block" onclick="modal('modal-lg', 'Ubah Password', 'modal/modal_form_password', '<?php echo $paramprofile ?>', 'account/update_password', '<?php echo base_url() ?>')">
-									Ubah Password
+									<?php echo $PASSWORD_DESCRIPTION ?>
 								</button>
 							</div>
 						</div>

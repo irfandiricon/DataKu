@@ -250,12 +250,14 @@ class Account extends BaseController
         $PASSWORD_SESSION = isset($CheckUser->PASSWORD) ? $CheckUser->PASSWORD:"";
         $REFERRAL_SESSION = isset($CheckUser->REFERRAL_ID) ? $CheckUser->REFERRAL_ID:"";
 
-        if($PASSWORD_SESSION != md5($REFERRAL_SESSION.$OLD_PASSWORD)){
-            $JSON['ERROR_CODE'] = "EC:07A";
-            $JSON['ERROR_MESSAGE'] = "Password lama anda tidak sesuai!";
-            die(json_encode($JSON));
+        if(!empty($PASSWORD_SESSION)){
+            if($PASSWORD_SESSION != md5($REFERRAL_SESSION.$OLD_PASSWORD)){
+                $JSON['ERROR_CODE'] = "EC:07A";
+                $JSON['ERROR_MESSAGE'] = "Password lama anda tidak sesuai!";
+                die(json_encode($JSON));
+            }
         }
-
+        
         $PASSWORD = md5($REFERRAL_SESSION.$NEW_PASSWORD);
 
         $paraminsert['PASSWORD'] = $PASSWORD;

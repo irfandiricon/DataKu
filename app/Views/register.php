@@ -71,18 +71,19 @@
 						</div>
 					</div>
 					<div class="row" style="padding-top: 30px;">
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"></div>
+						<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 padtop-10">
 							<div class="box" onclick="google('<?php echo base_url() ?>/register/gmail')">
 								<img src="<?php echo base_url('assets/image/google.png')?>" style="width:17px; height: auto;">
 								&nbsp;Daftar dengan Google
 							</div>
 						</div>
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+						<!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 padtop-10">
 							<div class="box" onclick="facebook('<?php echo base_url() ?>/register/facebook')">
 								<img src="<?php echo base_url('assets/image/fb.png')?>" style="width:17px; height: auto;">
 								&nbsp;Daftar dengan Facebook
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

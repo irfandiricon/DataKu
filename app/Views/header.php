@@ -1,7 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-blue padtop-0 padbottom-0 fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-blue padtop-0 padbot-0 fixed-top">
 	<a class="navbar-brand" href="<?php echo base_url()?>">
 		<div style="border-radius: 75px; ">
-			<!-- <img src="<?php echo base_url('assets')?>/image/logo.png" style="width: 50px; height: 50px;"> -->
 			<h3 style="margin-top: 10px; margin-bottom: 10px;">DataKu</h3>
 		</div>
 	</a>

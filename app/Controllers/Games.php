@@ -297,8 +297,12 @@ class Games extends BaseController
         $REFERRAL_SESSION = isset($CheckUser->REFERRAL_ID) ? $CheckUser->REFERRAL_ID:"";
         $PIN = md5($REFERRAL_SESSION.$PIN_MERGER);
 
-        if($PIN != $PIN_SESSION){
+        if(empty($PIN_SESSION)){
         	$JSON['ERROR_CODE'] = "EC:000B";
+            $JSON['ERROR_MESSAGE'] = "Silahkan buat PIN anda terlebih dahulu, baca syarat dan ketentuan!";
+            die(json_encode($JSON));
+        }elseif($PIN != $PIN_SESSION){
+        	$JSON['ERROR_CODE'] = "EC:000C";
             $JSON['ERROR_MESSAGE'] = "PIN anda tidak sesuai!";
             die(json_encode($JSON));
         }

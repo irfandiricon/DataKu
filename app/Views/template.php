@@ -31,6 +31,7 @@ $param['SESSION_LOGIN'] = isset($SESSION_LOGIN) ? $SESSION_LOGIN: array();
     <link rel="stylesheet" href="<?php echo base_url('assets') ?>/bootstrap-fileinput/css/fileinput-rtl.css">
     <link rel="stylesheet" href="<?php echo base_url('assets') ?>/bootstrap-fileinput/css/fileinput.css">
     <link rel="stylesheet" href="<?php echo base_url('assets') ?>/bootstrap-fileinput/css/fileinput.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets') ?>/Css/style.css">
     <?php
     if(!empty($cssName)){ 
 	    $AddtionalCss = explode(":",$cssName);
@@ -53,23 +54,10 @@ $param['SESSION_LOGIN'] = isset($SESSION_LOGIN) ? $SESSION_LOGIN: array();
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/bootstrap-fileinput/js/fileinput.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets'); ?>/bootstrap-fileinput/js/fileinput.min.js"></script>
 
-    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-   <!--  <script type="text/javascript" src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js"></script> -->
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js"></script> -->
-
-    <!-- <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script -->
-
 	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
 	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-	<!-- <script defer src="./init-firebase.js"></script> -->
-
  	
     <?php
     if(!empty($jsName)){
@@ -125,15 +113,12 @@ if($PROTOCOL == "https://"){
 	</div>
 
 	<div class="container-fluid" style="padding-right: 0; padding-left: 0;">
-		<div class="row" style="padding-top: 80px; background-color: white; position: fixed; width: 100%; z-index: 1; border: 1px solid #ddd;">
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-				<p style="color: red; font-weight: bold;">Website ini masih dalam tahap pengembangan</p>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6" align="right" style="color: red; font-weight: bold;">
-				<span>Hadir dalam : </span><span class="countdown" id="countdown"></span>
-			</div>
+		<div class="row" style="padding-top: 65px; background-color: white; position: fixed; width: 100%; z-index: 1; border: 1px solid #ddd; display: table;">
+			<?php 
+			echo view('navbar');
+			?>
 		</div>
-		<div class="row" style="margin-bottom: 100px; padding-top: 110px;">
+		<div class="row" style="margin-bottom: 100px; padding-top: 100px;">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 0; padding-right: 0; padding-top: 30px;">
 				<?php 
 				echo view($content);

@@ -1,7 +1,5 @@
 DELIMITER $$
-
 CREATE
-    /*[DEFINER = { user | CURRENT_USER }]*/
     TRIGGER `pusb8564_dataku`.`AI_TRANSAKSI` AFTER INSERT
     ON `pusb8564_dataku`.`TRANSAKSI`
     FOR EACH ROW BEGIN
@@ -12,5 +10,4 @@ CREATE
 	SET @vDesc = CONCAT_WS(' ','Transaksi',NEW.NO_PELANGGAN,'(',@vStatus,')');
 	INSERT INTO MS_NOTIFICATION (EMAIL,TITLE,DESCRIPTION,CREATED_DATE) VALUES (@vEmail,@vTitle,@vDesc,NOW());
     END$$
-
 DELIMITER ;

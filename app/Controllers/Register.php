@@ -178,9 +178,9 @@ class Register extends BaseController
 
         $_SESSION['SESSION_LOGIN'][$Apps] = $param;
 
-        $ERROR_MESSAGE = "Pendaftaran anda berhasil";
-        $ERROR_CODE = "EC:0000";
-        $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YES");
+        $JSON['ERROR_CODE'] = "EC:0000";
+        $JSON['ERROR_MESSAGE'] = "Pendaftaran anda berhasil";
+        $JSON['UrlPage'] = base_url('akun');
         die(json_encode($JSON));
     }
 
@@ -197,8 +197,6 @@ class Register extends BaseController
         $photoURL = isset($_POST['photoURL']) ? $_POST['photoURL']:"";
         $phoneNumber = isset($_POST['phoneNumber']) ? $_POST['phoneNumber']:"";
         $emailVerified = isset($_POST['emailVerified']) ? $_POST['emailVerified']:"";
-
-        die(json_encode($_POST));
 
         if(empty($email)){
             $JSON = array("ERROR_CODE"=>"EC:001A", "ERROR_MESSAGE"=>$this->lang->line('req_email'));
@@ -241,9 +239,9 @@ class Register extends BaseController
 
         $_SESSION['SESSION_LOGIN'][$Apps] = $param;
 
-        $ERROR_MESSAGE = "Pendaftaran anda berhasil";
-        $ERROR_CODE = "EC:0000";
-        $JSON = array("ERROR_CODE" => $ERROR_CODE, "ERROR_MESSAGE" => $ERROR_MESSAGE, "NOREFRESH"=>"YES");
+        $JSON['ERROR_CODE'] = "EC:0000";
+        $JSON['ERROR_MESSAGE'] = "Pendaftaran anda berhasil";
+        $JSON['UrlPage'] = base_url('akun');
         die(json_encode($JSON));
     }
 }

@@ -1,3 +1,7 @@
+<?php 
+$PASSWORD = isset($rows['PASSWORD']) ? $rows['PASSWORD']:"";
+if(!empty($PASSWORD)){
+?>
 <div class="row padtop-10">
 	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
 		<span class="f-size-20">Password Lama</span>
@@ -13,6 +17,7 @@
 		</div>
 	</div>
 </div>
+<?php } ?>
 <div class="row padtop-10">
 	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
 		<span class="f-size-20">Password Baru</span>
