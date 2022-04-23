@@ -4,7 +4,7 @@
 			<h3 style="margin-top: 10px; margin-bottom: 10px;">DataKu</h3>
 		</div>
 	</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" style="border-color: white; border-radius: 10px !important;">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
@@ -40,7 +40,7 @@
 					</a>
 				</li>
 				<li class="nav-item nav-desktop">
-					<a class="nav-link open-preloader" href="<?php echo base_url('riwayat-transaksi')?>">
+					<a class="nav-link open-preloader" href="<?php echo base_url('notifikasi')?>">
 						<i class="fa fa-bell"></i> Notifikasi
 						<span class="badge badge-pill badge-danger" style="font-weight: normal; margin-left: 3px;">0</span>
 					</a>

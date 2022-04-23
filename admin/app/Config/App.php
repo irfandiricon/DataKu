@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost:8080/ircn-dataku/admin/';
+	public $baseURL = 'http://localhost/ircn-dataku/admin/';
 
 	/*
 	|--------------------------------------------------------------------------

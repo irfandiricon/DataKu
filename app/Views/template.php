@@ -143,7 +143,7 @@ if($PROTOCOL == "https://"){
 	if(!empty($param['SESSION_LOGIN'])){
 	?>
 	<div class="row footer-mobile t-center fixed-bottom" style="background-color: #ddd;">
-		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info open-preloader" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>/home'">
+		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 padtop-10 btn btn-info open-preloader" style="border-radius: 0; border: 1px solid #ddd;" onclick="window.location.href = '<?php echo base_url() ?>'">
 			<i class="fa fa-home"></i><br>
 			<span style="font-size: 14px;">Beranda</span>
 		</div>
